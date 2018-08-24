@@ -1,0 +1,12 @@
+﻿<Project Synchronized="False" SyncFilter="*.ps1;*.psm1;*.psd1;*.ps1xml;*.psf;*.pss;*.xml;*.help.txt">
+  <Version>2.1</Version>
+  <FileID>f2846391-b078-4645-8a33-8c70a4e7e8b9</FileID>
+  <ProjectType>2</ProjectType>
+  <Folders />
+  <Files>
+    <File Build="1">.gitignore</File>
+    <File Build="2" Shared="False">PDLogger.ps1</File>
+  </Files>
+  <DeployMode>Project</DeployMode>
+  <PrimaryFile></PrimaryFile>
+</Project>
