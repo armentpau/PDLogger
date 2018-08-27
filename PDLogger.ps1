@@ -73,13 +73,61 @@ param
 	[switch]$AppendUserName,
 	[switch]$AppendComputerName,
 	[switch]$MirrorMessage,
-	[int]$MaxLogSize = 2,
+	[int]$MaxLogSize = 2 * 1MB,
 	[int]$MaxLogs = 5,
 	[switch]$DontRetainLogs
 )
-BEGIN 
-{
+Import-Module AHCITModule
 
+BEGIN
+{
+	if ($PSBoundParameters.ContainsKey("ScriptName"))
+	{
+		Write-Verbose "The paramter ScriptName contains the value $($ScriptName)"
+	}
+	else
+	{
+		if ((Get-Host).Version.Major -eq 2)
+		{
+			try
+			{
+				Write-Verbose "PowerShell Version 2 detected.  This version is depreciated.  You should update your version of PowerShell"
+				$scriptName = (Split-Path $MyInvocation.ScriptName -Leaf).tolower().Replace('.ps1', '')
+				Write-Verbose "Setting the value of scriptname value to $($ScriptName)"
+			}
+			catch
+			{
+				Write-Warning "Unable to determine script name.  Defaulting to Unknown."
+				$scriptName = "Unknown"
+			}
+		}
+		elseif ((get-host).Version.Major -eq 1)
+		{
+			Write-Warning "Version 1 of Powershell is not supported by this function.  Exiting function."
+			exit
+		}
+		else #version greater than 2
+		{
+			Write-Verbose "PowerShell version detected is $((Get-Host).Version.Major).  Attempting to determine the script name."
+			try
+			{
+				$scriptName = (Split-Path $MyInvocation.PSCommandPath -Leaf).tolower().Replace('.ps1', '')
+				Write-Verbose "Setting scriptname variable to $($ScriptName)"
+			}
+			catch
+			{
+				$scriptName = "Unknown"
+			}
+		}
+	}
+	if ($ScriptName -eq "Unknown" -and ((get-process -Id $pid).name -ne "Powershell"))
+	{
+		$ScriptName = (Get-Process -Id $pid).name
+	}
+	if ($ScriptName -eq "Unknown")
+	{
+		Write-Warning "The script name is unknown.  Unable to determine the script name automatically."
+	}
 }
 PROCESS
 {
