@@ -1,12 +1,21 @@
-﻿<Project Synchronized="False" SyncFilter="*.ps1;*.psm1;*.psd1;*.ps1xml;*.psf;*.pss;*.xml;*.help.txt">
+﻿<Project Synchronized="False" SyncFilter="*.ps1;*.psm1;*.psd1;*.ps1xml;*.psf;*.pss;*.xml;*.help.txt" AutoExportFunctions="True" AutoExportPS1XMLFiles="True">
   <Version>2.1</Version>
-  <FileID>f2846391-b078-4645-8a33-8c70a4e7e8b9</FileID>
-  <ProjectType>2</ProjectType>
-  <Folders />
+  <FileID>43972783-8eaa-44f9-aecc-43fc83fa10e2</FileID>
+  <ProjectType>1</ProjectType>
+  <Folders>
+    <Folder>Public</Folder>
+    <Folder>Private</Folder>
+  </Folders>
   <Files>
+    <File Build="2">PDLogger.psd1</File>
+    <File Build="0" ExportFunctions="True">PDLogger.psm1</File>
+    <File Build="1" Shared="False" ReferenceFunction="Invoke-Test-Module_ps1" ExportFunctions="False">Test-Module.ps1</File>
     <File Build="1">.gitignore</File>
-    <File Build="2" Shared="False">PDLogger.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Rename-LogFile_ps1" ExportFunctions="False">Private\Rename-LogFile.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-PDArchiveLogFile_ps1" ExportFunctions="False">Private\Get-PDArchiveLogFile.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Remove-PDLogFile_ps1" ExportFunctions="False">Private\Remove-PDLogFile.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Write-PDInformationStreams_ps1" ExportFunctions="False">Private\Write-PDInformationStreams.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Out-PDLogFile_ps1" ExportFunctions="False">Public\Out-PDLogFile.ps1</File>
   </Files>
-  <DeployMode>Project</DeployMode>
-  <PrimaryFile></PrimaryFile>
+  <StartupScript>C:\Users\949237\Documents\Repos\PDLogger\PDLogger\Test-Module.ps1</StartupScript>
 </Project>
